@@ -1,0 +1,14 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /events/{eventId} {
+      allow read: if true;
+      allow create: if request.auth != null;
+      allow update: if request.auth != null && 
+        (resource.data.userId == request.auth.uid || 
+         request.resource.data.photos != null);
+      allow delete: if request.auth != null && 
+        resource.data.userId == request.auth.uid;
+    }
+  }
+}

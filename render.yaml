@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: eventcam-api
+    env: node
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: GOOGLE_SERVICE_ACCOUNT_EMAIL
+        sync: false
+      - key: GOOGLE_PRIVATE_KEY
+        sync: false
+      - key: CORS_ORIGIN
+        value: https://resilient-puffpuff-7b81d9.netlify.app
